@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ProByte | Soporte técnico y mantenimiento de computadores</title>
+  <meta name="description" content="Soporte técnico, mantenimiento de computadores, instalación de programas y configuración básica de redes.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <a class="logo" href="#inicio"><img src="logo.png" alt="ProByte, soporte técnico y mantenimiento de computadores"></a>
+    <nav aria-label="Principal" id="menu">
+      <a href="#servicios">Servicios</a>
+      <a href="#cotizacion">Cotización</a>
+      <a href="#proceso">Cómo trabajamos</a>
+      <a href="#contacto" class="btn small">Pedir ayuda</a>
+    </nav>
+    <div class="controles">
+      <button type="button" class="tema" id="tema" aria-pressed="false" aria-label="Cambiar a modo oscuro">
+        <svg class="icono-sol" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+        </svg>
+        <svg class="icono-luna" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
+        </svg>
+      </button>
+      <button type="button" class="tema menu-btn" id="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
+        <svg class="icono-abrir" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <svg class="icono-cerrar" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-text">
+        <h1>Tu computador, funcionando otra vez.</h1>
+        <p>Arreglamos, limpiamos, instalamos y conectamos. Cuéntanos qué le pasa a tu equipo y te decimos qué hacer.</p>
+      </div>
+
+      <div class="diag" aria-live="polite">
+        <h2>¿Qué le pasa a tu equipo?</h2>
+        <div class="options" role="group" aria-label="Elige un problema">
+          <button data-p="lento">Está muy lento</button>
+          <button data-p="programa">Necesito un programa</button>
+          <button data-p="wifi">No tengo internet</button>
+          <button data-p="no-enciende">No enciende o se apaga</button>
+        </div>
+        <div class="result" id="resultado">
+          <p class="muted">Elige una opción y te mostramos el servicio que necesitas.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="servicios">
+      <h2>Servicios</h2>
+      <div class="grid">
+        <article>
+          <h3>Soporte técnico</h3>
+          <p>Diagnóstico de fallas de hardware y software, en el local o a distancia.</p>
+        </article>
+        <article>
+          <h3>Mantenimiento</h3>
+          <p>Limpieza interna, cambio de pasta térmica y revisión de componentes.</p>
+        </article>
+        <article>
+          <h3>Instalación de programas</h3>
+          <p>Sistema operativo, ofimática, antivirus y el software que necesites para estudiar o trabajar.</p>
+        </article>
+        <article>
+          <h3>Redes básicas</h3>
+          <p>Configuración de router, Wi-Fi y conexión de equipos e impresoras.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section alt" id="cotizacion">
+      <h2>Cotiza tu servicio</h2>
+      <p>Elige lo que necesitas y calcula un valor aproximado. Los precios son ficticios y están en pesos colombianos (COP).</p>
+      <div class="cotizador">
+        <div>
+          <fieldset>
+            <legend>Servicios</legend>
+            <label class="check"><input type="checkbox" name="serv" value="30000" data-nombre="Diagnóstico de fallas" data-form="Soporte técnico"> Diagnóstico de fallas <span>$30.000</span></label>
+            <label class="check"><input type="checkbox" name="serv" value="60000" data-nombre="Mantenimiento preventivo" data-form="Mantenimiento"> Mantenimiento preventivo <span>$60.000</span></label>
+            <label class="check"><input type="checkbox" name="serv" value="40000" data-nombre="Instalación de programas" data-form="Instalación de programas"> Instalación de programas <span>$40.000</span></label>
+            <label class="check"><input type="checkbox" name="serv" value="50000" data-nombre="Configuración de red" data-form="Redes básicas"> Configuración de red <span>$50.000</span></label>
+          </fieldset>
+          <label>Número de equipos
+            <input type="number" id="equipos" min="1" max="20" value="1">
+          </label>
+          <label class="check"><input type="checkbox" id="domicilio"> Visita a domicilio <span>+ $20.000</span></label>
+          <p class="muted-note">10 % de descuento desde 3 equipos.</p>
+        </div>
+
+        <div class="total" aria-live="polite">
+          <h3>Tu cotización</h3>
+          <ul id="detalle"></ul>
+          <p class="total-valor" id="total">$0</p>
+          <button type="button" class="btn" id="btn-cotizar">Solicitar esta cotización</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="proceso">
+      <h2>Cómo trabajamos</h2>
+      <ol class="steps">
+        <li><strong>Nos cuentas el problema.</strong> A través del formulario de contacto.</li>
+        <li><strong>Diagnosticamos.</strong> Revisamos el equipo y confirmamos el valor final a partir de tu cotización aproximada.</li>
+        <li><strong>Reparamos.</strong> Solo hacemos el trabajo que tú aprobaste.</li>
+        <li><strong>Te lo entregamos probado.</strong> Con garantía de 30 días sobre el trabajo.</li>
+      </ol>
+    </section>
+
+    <section class="section" id="contacto">
+      <h2>Pedir ayuda</h2>
+      <form id="form" novalidate>
+        <label>Nombre
+          <input type="text" id="nombre" autocomplete="name">
+          <span class="error" data-for="nombre"></span>
+        </label>
+        <label>Correo
+          <input type="email" id="correo" autocomplete="email">
+          <span class="error" data-for="correo"></span>
+        </label>
+        <label>Servicio
+          <select id="servicio">
+            <option value="">Selecciona uno</option>
+            <option>Soporte técnico</option>
+            <option>Mantenimiento</option>
+            <option>Instalación de programas</option>
+            <option>Redes básicas</option>
+          </select>
+          <span class="error" data-for="servicio"></span>
+        </label>
+        <label>Cuéntanos qué pasa
+          <textarea id="mensaje" rows="4"></textarea>
+          <span class="error" data-for="mensaje"></span>
+        </label>
+        <button type="submit" class="btn">Enviar solicitud</button>
+        <p class="ok" id="exito" hidden></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>ProByte · Negocio ficticio creado para un proyecto académico.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,562 @@
+/* ==========================================================
+   ProByte - Hoja de estilos
+   ========================================================== */
+
+/* ---------- Variables de color ---------- */
+:root {
+  --papel: #F3EFF5;
+  --tinta: #2B2530;
+  --azul: #6A1F7A;
+  --cian: #9B4FB0;
+  --amarillo: #FFC93C;
+  --blanco: #fff;
+  --gris: #5E5566;
+  --error: #B3261E;
+  --radio: 10px;
+
+  /* Colores que cambian entre modo claro y oscuro */
+  --superficie: #fff;
+  --panel: #2B2530;
+  --pie: #2B2530;
+  --morado: #6A1F7A;
+  --linea: #DDD3E2;
+  --borde-input: #C5B8CC;
+  --sobre-amarillo: #2B2530;
+  --ok-bg: #DDF4E4;
+  --ok-texto: #14532D;
+}
+
+/* ---------- Modo oscuro ---------- */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --papel: #17131B;
+  --tinta: #EDE6F1;
+  --azul: #D39AE3;
+  --cian: #B76AC9;
+  --gris: #B9AEC2;
+  --error: #FF8A80;
+  --superficie: #221C28;
+  --panel: #2E2536;
+  --pie: #0F0C12;
+  --linea: #3A3043;
+  --borde-input: #5E4A6B;
+  --ok-bg: #1E3A2A;
+  --ok-texto: #BFE8CB;
+}
+
+/* ---------- Estilos base ---------- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: 1.7rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+}
+
+p {
+  margin: 0 0 1em;
+  max-width: 62ch;
+}
+
+a {
+  color: var(--azul);
+}
+
+:focus-visible {
+  outline: 3px solid var(--amarillo);
+  outline-offset: 2px;
+}
+
+/* ---------- Cabecera y navegación ---------- */
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem clamp(1rem, 5vw, 4rem);
+  background: var(--superficie);
+  border-bottom: 1px solid var(--linea);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.logo {
+  display: block;
+}
+
+.logo img {
+  display: block;
+  height: 56px;
+  width: auto;
+}
+
+nav {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 1.25rem;
+}
+
+nav a {
+  color: var(--tinta);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+nav a:hover {
+  color: var(--azul);
+}
+
+/* ---------- Botones ---------- */
+.btn {
+  display: inline-block;
+  background: var(--amarillo);
+  color: var(--sobre-amarillo);
+  border: 0;
+  padding: 0.8rem 1.4rem;
+  border-radius: var(--radio);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #ffd866;
+}
+
+.btn.small {
+  padding: 0.4rem 0.9rem;
+  font-size: 0.95rem;
+}
+
+/* ---------- Sección de inicio (hero) ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  padding: clamp(2rem, 6vw, 5rem) clamp(1rem, 5vw, 4rem);
+  background: var(--superficie);
+  border-bottom: 6px solid var(--cian);
+}
+
+/* ---------- Diagnóstico rápido ---------- */
+.diag {
+  background: var(--panel);
+  color: var(--blanco);
+  padding: 1.6rem;
+  border-radius: 14px;
+}
+
+.diag h2 {
+  font-size: 1.25rem;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.options button {
+  background: transparent;
+  color: var(--blanco);
+  border: 2px solid #5E4A6B;
+  padding: 0.8rem;
+  border-radius: var(--radio);
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.options button:hover {
+  border-color: var(--cian);
+}
+
+.options button[aria-pressed="true"] {
+  background: var(--cian);
+  border-color: var(--cian);
+  color: var(--sobre-amarillo);
+  font-weight: 700;
+}
+
+.result {
+  background: #41334B;
+  border-radius: var(--radio);
+  padding: 1rem;
+  min-height: 7.5rem;
+}
+
+.result p {
+  margin: 0 0 0.6em;
+}
+
+.result a {
+  color: var(--amarillo);
+  font-weight: 700;
+}
+
+.muted {
+  color: #C9BBD2;
+}
+
+/* ---------- Secciones generales ---------- */
+.section {
+  padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 5vw, 4rem);
+}
+
+.section.alt {
+  background: var(--superficie);
+}
+
+/* ---------- Servicios ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.grid article {
+  background: var(--superficie);
+  padding: 1.25rem;
+  border-left: 5px solid var(--cian);
+  border-radius: 0 var(--radio) var(--radio) 0;
+}
+
+.grid article:nth-child(even) {
+  border-left-color: var(--amarillo);
+}
+
+.grid p {
+  margin: 0;
+  color: var(--gris);
+}
+
+/* ---------- Botón de modo claro / oscuro ---------- */
+.tema {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  background: transparent;
+  color: var(--tinta);
+  border: 2px solid var(--borde-input);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.tema:hover {
+  border-color: var(--cian);
+  color: var(--azul);
+}
+
+/* Sol en modo claro, luna en modo oscuro */
+.icono-luna {
+  display: none;
+}
+
+:root[data-theme="dark"] .icono-sol {
+  display: none;
+}
+
+:root[data-theme="dark"] .icono-luna {
+  display: block;
+}
+
+/* En modo oscuro el logo va sobre una placa clara para que se lea */
+:root[data-theme="dark"] .logo img {
+  background: #fff;
+  padding: 3px 10px;
+  border-radius: 8px;
+}
+
+/* ---------- Botón del menú (solo en celular) ---------- */
+.controles {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.menu-btn {
+  display: none;
+}
+
+.icono-cerrar {
+  display: none;
+}
+
+.menu-btn[aria-expanded="true"] .icono-abrir {
+  display: none;
+}
+
+.menu-btn[aria-expanded="true"] .icono-cerrar {
+  display: block;
+}
+
+/* ---------- Cotización ---------- */
+.cotizador {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.cotizador fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.cotizador legend {
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: var(--superficie);
+  padding: 0.8rem 1rem;
+  border-radius: var(--radio);
+  margin-bottom: 0.6rem;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.check span {
+  margin-left: auto;
+  font-weight: 700;
+  color: var(--azul);
+}
+
+input[type="checkbox"] {
+  width: 1.2rem;
+  height: 1.2rem;
+  padding: 0;
+  accent-color: var(--morado);
+}
+
+#equipos {
+  width: 6rem;
+}
+
+.muted-note {
+  color: var(--gris);
+  font-size: 0.9rem;
+  margin: 0.4rem 0 0;
+}
+
+.total {
+  background: var(--panel);
+  color: var(--blanco);
+  padding: 1.4rem;
+  border-radius: 14px;
+  align-self: start;
+}
+
+.total ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.total li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.total-valor {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--amarillo);
+  margin: 0 0 1rem;
+}
+
+/* ---------- Cómo trabajamos (pasos numerados) ---------- */
+.steps {
+  counter-reset: paso;
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: grid;
+  gap: 1rem;
+  max-width: 60ch;
+}
+
+.steps li {
+  counter-increment: paso;
+  padding-left: 3rem;
+  position: relative;
+}
+
+.steps li::before {
+  content: counter(paso);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2.1rem;
+  height: 2.1rem;
+  background: var(--morado);
+  color: var(--blanco);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+}
+
+/* ---------- Formulario de contacto ---------- */
+form {
+  display: grid;
+  gap: 1rem;
+  max-width: 520px;
+  margin-top: 1.5rem;
+}
+
+label {
+  display: grid;
+  gap: 0.3rem;
+  font-weight: 600;
+}
+
+input,
+select,
+textarea {
+  font: inherit;
+  padding: 0.65rem 0.8rem;
+  border: 2px solid var(--borde-input);
+  border-radius: var(--radio);
+  background: var(--superficie);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--azul);
+  outline: none;
+}
+
+.invalid {
+  border-color: var(--error);
+}
+
+.error {
+  color: var(--error);
+  font-size: 0.9rem;
+  font-weight: 400;
+  min-height: 1.1em;
+}
+
+.ok {
+  background: var(--ok-bg);
+  color: var(--ok-texto);
+  padding: 0.9rem 1rem;
+  border-radius: var(--radio);
+  margin: 0;
+}
+
+form .btn {
+  justify-self: start;
+}
+
+/* ---------- Pie de página ---------- */
+footer {
+  background: var(--pie);
+  color: #CFC3D6;
+  padding: 1.5rem clamp(1rem, 5vw, 4rem);
+  font-size: 0.9rem;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* ---------- Diseño responsive (celulares) ---------- */
+@media (max-width: 800px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .options,
+  .cotizador {
+    grid-template-columns: 1fr;
+  }
+
+  /* Menú desplegable en celular */
+  .menu-btn {
+    display: grid;
+  }
+
+  nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    margin: 0;
+    padding: 0.5rem clamp(1rem, 5vw, 4rem) 1rem;
+    background: var(--superficie);
+    border-bottom: 1px solid var(--linea);
+  }
+
+  nav.abierto {
+    display: flex;
+  }
+
+  nav a {
+    padding: 0.7rem 0;
+  }
+
+  nav .btn.small {
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+}
+
+/* ---------- Accesibilidad: menos animación ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
