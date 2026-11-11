@@ -142,6 +142,26 @@ function calcular() {
 [...checksServicios, inputEquipos, checkDomicilio].forEach(el => el.addEventListener("input", calcular));
 calcular();
 
+// Limitar el número de equipos entre 1 y 20 (también lo que se ve en el campo)
+inputEquipos.addEventListener("input", () => {
+  if (inputEquipos.value === "") return;
+  const n = parseInt(inputEquipos.value, 10);
+  inputEquipos.value = Math.min(20, Math.max(1, Number.isNaN(n) ? 1 : n));
+  calcular();
+});
+
+inputEquipos.addEventListener("blur", () => {
+  if (inputEquipos.value === "") {
+    inputEquipos.value = 1;
+    calcular();
+  }
+});
+
+// Bloquear caracteres que no son dígitos (e, +, -, punto, coma)
+inputEquipos.addEventListener("keydown", e => {
+  if (["e", "E", "+", "-", ".", ","].includes(e.key)) e.preventDefault();
+});
+
 document.getElementById("btn-cotizar").addEventListener("click", () => {
   if (!cotizacionActual.servicios.length) {
     detalle.innerHTML = '<li class="muted">Primero selecciona al menos un servicio.</li>';
