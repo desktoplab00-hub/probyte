@@ -143,10 +143,15 @@ function calcular() {
 calcular();
 
 // Limitar el número de equipos entre 1 y 20 (también lo que se ve en el campo)
+// Se usa un campo de texto con teclado numérico porque en celular los campos
+// type="number" aceptan caracteres y longitudes que el código no puede bloquear.
 inputEquipos.addEventListener("input", () => {
-  if (inputEquipos.value === "") return;
-  const n = parseInt(inputEquipos.value, 10);
-  inputEquipos.value = Math.min(20, Math.max(1, Number.isNaN(n) ? 1 : n));
+  const soloDigitos = inputEquipos.value.replace(/\D/g, "").slice(0, 2);
+  if (soloDigitos === "") {
+    inputEquipos.value = "";
+    return;
+  }
+  inputEquipos.value = Math.min(20, Math.max(1, parseInt(soloDigitos, 10)));
   calcular();
 });
 
@@ -155,11 +160,6 @@ inputEquipos.addEventListener("blur", () => {
     inputEquipos.value = 1;
     calcular();
   }
-});
-
-// Bloquear caracteres que no son dígitos (e, +, -, punto, coma)
-inputEquipos.addEventListener("keydown", e => {
-  if (["e", "E", "+", "-", ".", ","].includes(e.key)) e.preventDefault();
 });
 
 document.getElementById("btn-cotizar").addEventListener("click", () => {

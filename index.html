@@ -93,7 +93,7 @@
             <label class="check"><input type="checkbox" name="serv" value="50000" data-nombre="Configuración de red" data-form="Redes básicas"> Configuración de red <span>$50.000</span></label>
           </fieldset>
           <label>Número de equipos
-            <input type="number" id="equipos" min="1" max="20" value="1">
+            <input type="text" id="equipos" inputmode="numeric" pattern="[0-9]*" maxlength="2" value="1" autocomplete="off">
           </label>
           <label class="check"><input type="checkbox" id="domicilio"> Visita a domicilio <span>+ $20.000</span></label>
           <p class="muted-note">10 % de descuento desde 3 equipos.</p>
