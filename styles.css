@@ -496,6 +496,17 @@ form .btn {
   justify-self: start;
 }
 
+.ok.fallo {
+  background: transparent;
+  color: var(--error);
+  border: 2px solid var(--error);
+}
+
+form .btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
 /* ---------- Pie de página ---------- */
 footer {
   background: var(--pie);

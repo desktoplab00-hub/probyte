@@ -47,6 +47,36 @@ function marcar(id, mensaje) {
   return !mensaje;
 }
 
+// Envío del formulario a Google Sheets y correo (Google Apps Script)
+const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbwQ5TzO17zch2POHLUE1sWsKOlOBP23dMkOB8y9qKa_vgd35cRps7_1fpXhNJpkmNue5Q/exec";
+
+async function enviarSolicitud(datos) {
+  const boton = form.querySelector('button[type="submit"]');
+  boton.disabled = true;
+  boton.textContent = "Enviando...";
+  exito.hidden = true;
+  exito.classList.remove("fallo");
+
+  try {
+    // text/plain evita la verificación previa (preflight) que Apps Script no admite
+    await fetch(URL_SCRIPT, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(datos)
+    });
+    exito.textContent = `Gracias, ${datos.nombre}. Recibimos tu solicitud de ${datos.servicio.toLowerCase()} y te escribiremos a ${datos.correo}.`;
+    form.reset();
+  } catch (error) {
+    exito.textContent = "No pudimos enviar tu solicitud. Revisa tu conexión e inténtalo de nuevo.";
+    exito.classList.add("fallo");
+  } finally {
+    exito.hidden = false;
+    boton.disabled = false;
+    boton.textContent = "Enviar solicitud";
+  }
+}
+
 form.addEventListener("submit", e => {
   e.preventDefault();
   const nombre = document.getElementById("nombre").value.trim();
@@ -62,9 +92,7 @@ form.addEventListener("submit", e => {
   ];
 
   if (validos.every(Boolean)) {
-    exito.textContent = `Gracias, ${nombre}. Recibimos tu solicitud de ${servicio.toLowerCase()} y te escribiremos a ${correo}.`;
-    exito.hidden = false;
-    form.reset();
+    enviarSolicitud({ nombre, correo, servicio, mensaje });
   } else {
     exito.hidden = true;
   }
